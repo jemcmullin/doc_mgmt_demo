@@ -1,3 +1,4 @@
+import 'package:doc_mgmt_demo/screens/doc_route_screen.dart';
 import 'package:flutter/material.dart';
 
 class ArchiveScreen extends StatelessWidget {
@@ -13,12 +14,14 @@ class ArchiveScreen extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
+        width: double.infinity,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(height: 20),
             SingleChildScrollView(
               child: DataTable(
+                showCheckboxColumn: false,
                 columns: const [
                   DataColumn(label: Text('Number')),
                   DataColumn(label: Text('Title')),
@@ -26,16 +29,26 @@ class ArchiveScreen extends StatelessWidget {
                 ],
                 rows: List.generate(
                   numItems,
-                  (index) => DataRow(cells: [
-                    DataCell(Text('A$index')),
-                    DataCell(Text('B$index')),
-                    DataCell(Text('C$index')),
-                  ]),
+                  (index) => DataRow(
+                      onSelectChanged: (_) {
+                        Navigator.pushNamed(context, DocRouteScreen.routeName,
+                            arguments: index);
+                      },
+                      cells: [
+                        DataCell(Text('A$index')),
+                        DataCell(Text('B$index')),
+                        DataCell(Text('C$index')),
+                      ]),
                 ),
               ),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        //backgroundColor: Colors.amberAccent,
+        child: const Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }

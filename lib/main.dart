@@ -1,3 +1,4 @@
+import 'package:doc_mgmt_demo/screens/doc_route_screen.dart';
 import 'package:flutter/material.dart';
 import './screens/archive_screen.dart';
 
@@ -13,9 +14,19 @@ class DocMgmtApp extends StatelessWidget {
     return MaterialApp(
       title: 'DocMgmt Demo',
       theme: ThemeData(
-        primarySwatch: Colors.grey,
+        primaryColor: Colors.grey,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.grey,
+        ).copyWith(
+          secondary: Colors.amber,
+        ),
+        //textTheme: const TextTheme(bodyText2: TextStyle(color: Colors.blue)),
       ),
       home: const ArchiveScreen(),
+      routes: {
+        ArchiveScreen.routeName: (context) => ArchiveScreen(),
+        DocRouteScreen.routeName: (context) => DocRouteScreen(),
+      },
     );
   }
 }
