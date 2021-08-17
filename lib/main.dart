@@ -1,8 +1,12 @@
 import 'package:doc_mgmt_demo/screens/doc_route_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import './screens/archive_screen.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  //await Hive.openBox<T>(name);
   runApp(const DocMgmtApp());
 }
 
